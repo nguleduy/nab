@@ -1,7 +1,6 @@
-package com.example.joseph.productservice.exceptions;
+package com.example.joseph.productservice.exception;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

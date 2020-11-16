@@ -1,4 +1,4 @@
-package com.example.joseph.productservice.exceptions;
+package com.example.joseph.productservice.exception;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

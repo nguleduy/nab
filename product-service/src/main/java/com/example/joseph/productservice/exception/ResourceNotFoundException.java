@@ -1,4 +1,4 @@
-package com.example.joseph.productservice.exceptions;
+package com.example.joseph.productservice.exception;
 
 public class ResourceNotFoundException extends BaseException {
 

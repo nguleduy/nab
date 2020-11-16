@@ -1,4 +1,4 @@
-package com.example.joseph.productservice.controllers;
+package com.example.joseph.productservice.controller;
 
 import com.example.joseph.productservice.constants.Constant;
 import com.example.joseph.productservice.dto.ProductDTO;
