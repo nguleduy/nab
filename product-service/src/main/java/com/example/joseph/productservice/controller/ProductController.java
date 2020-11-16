@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,12 +24,12 @@ public class ProductController {
   private ProductService productService;
 
   @GetMapping
-  public List<ProductDTO> getAllProducts() {
+  public List<ProductDTO> getAllProducts(@RequestHeader("username") String username) {
     return productService.findAll();
   }
 
   @GetMapping("/{id}")
-  public ProductDTO getProductDetail(@PathVariable String id) {
+  public ProductDTO getProductDetail(@RequestHeader("username") String username, @PathVariable String id) {
     return productService.findProductById(Long.parseLong(id));
   }
 
