@@ -1,7 +1,7 @@
 package com.example.joseph.productservice.controllers;
 
 import com.example.joseph.productservice.constants.Constant;
-import com.example.joseph.productservice.entity.Product;
+import com.example.joseph.productservice.dto.ProductDTO;
 import com.example.joseph.productservice.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,23 +23,23 @@ public class ProductController {
   private ProductService productService;
 
   @GetMapping
-  public List<Product> getAllProducts() {
+  public List<ProductDTO> getAllProducts() {
     return productService.findAll();
   }
 
   @GetMapping("/{id}")
-  public Product getProductDetail(@PathVariable String id) {
+  public ProductDTO getProductDetail(@PathVariable String id) {
     return productService.findProductById(Long.parseLong(id));
   }
 
   @PutMapping("/{id}")
-  public Product updateProduct(@Valid @RequestBody Product product, @PathVariable String id) {
+  public ProductDTO updateProduct(@Valid @RequestBody ProductDTO product, @PathVariable String id) {
     product.setId(Long.parseLong(id));
     return productService.update(product);
   }
 
   @PostMapping
-  public Product addProduct(@Valid @RequestBody Product product) {
+  public ProductDTO addProduct(@Valid @RequestBody ProductDTO product) {
     return productService.add(product);
   }
 }

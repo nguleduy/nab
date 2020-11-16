@@ -1,13 +1,17 @@
 package com.example.joseph.productservice.service;
 
+import com.example.joseph.productservice.dto.ProductDTO;
+import com.example.joseph.productservice.dto.ProductHistoryDTO;
 import com.example.joseph.productservice.entity.Product;
-import com.example.joseph.productservice.entity.ProductHistory;
+import com.example.joseph.productservice.mapper.ProductHistoryMapper;
+import com.example.joseph.productservice.mapper.ProductMapper;
 import com.example.joseph.productservice.repository.ProductHistoryRepository;
 import com.example.joseph.productservice.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -18,25 +22,26 @@ public class ProductServiceImpl implements ProductService {
   @Autowired
   private ProductHistoryRepository productHistoryRepository;
 
-  public List<Product> findAll() {
-    return productRepository.findAll();
+  public List<ProductDTO> findAll() {
+    List<Product> products = productRepository.findAll();
+    return products.stream().map(item -> ProductMapper.INSTANCE.toDto(item)).collect(Collectors.toList());
   }
 
-  public Product findProductById(Long id) {
-    return productRepository.findById(id).orElseThrow();
+  public ProductDTO findProductById(Long id) {
+    return ProductMapper.INSTANCE.toDto(productRepository.findById(id).orElseThrow());
   }
 
-  public Product add(Product product) {
-    return productRepository.save(product);
+  public ProductDTO add(ProductDTO product) {
+    return ProductMapper.INSTANCE.toDto(productRepository.save(ProductMapper.INSTANCE.toEntity(product)));
   }
 
-  public Product update(Product newProduct) {
+  public ProductDTO update(ProductDTO newProduct) {
     Product oldProduct = productRepository.findById(newProduct.getId()).orElseThrow();
     if (newProduct.getPrice().compareTo(oldProduct.getPrice()) != 0) {
-      ProductHistory productHistory = new ProductHistory(oldProduct, newProduct.getPrice());
-      productHistoryRepository.save(productHistory);
+      ProductHistoryDTO productHistory = new ProductHistoryDTO(ProductMapper.INSTANCE.toDto(oldProduct), newProduct.getPrice());
+      productHistoryRepository.save(ProductHistoryMapper.INSTANCE.toEntity(productHistory));
     }
-    return productRepository.save(newProduct);
+    return ProductMapper.INSTANCE.toDto(productRepository.save(ProductMapper.INSTANCE.toEntity(newProduct)));
   }
 
 }

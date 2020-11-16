@@ -22,7 +22,7 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = false)
 @Getter
 @Setter
-public abstract class AbstractAuditEntity {
+public abstract class AbstractAuditEntity extends AbstractEntity {
 
   @CreatedBy
   @Column(name = "CREATED_BY", updatable = false)

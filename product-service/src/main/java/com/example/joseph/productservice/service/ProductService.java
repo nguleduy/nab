@@ -1,16 +1,16 @@
 package com.example.joseph.productservice.service;
 
-import com.example.joseph.productservice.entity.Product;
+import com.example.joseph.productservice.dto.ProductDTO;
 
 import java.util.List;
 
 public interface ProductService {
 
-  List<Product> findAll();
+  List<ProductDTO> findAll();
 
-  Product findProductById(Long id);
+  ProductDTO findProductById(Long id);
 
-  Product add(Product product);
+  ProductDTO add(ProductDTO product);
 
-  Product update(Product newProduct);
+  ProductDTO update(ProductDTO newProduct);
 }

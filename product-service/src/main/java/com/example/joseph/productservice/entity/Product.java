@@ -12,7 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Getter
@@ -22,9 +21,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Product extends AbstractAuditEntity implements Serializable {
-
-  private static final long serialVersionUID = 1L;
+public class Product extends AbstractAuditEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)

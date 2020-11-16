@@ -12,7 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Getter
@@ -22,9 +21,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class ProductHistory extends AbstractAuditEntity implements Serializable {
-
-  private static final long serialVersionUID = 1L;
+public class ProductHistory extends AbstractAuditEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -47,13 +44,4 @@ public class ProductHistory extends AbstractAuditEntity implements Serializable 
 
   @Column(name = "new_price")
   private BigDecimal newPrice;
-
-  public ProductHistory(Product product, BigDecimal newPrice) {
-    this.productId = product.getId();
-    this.name = product.getName();
-    this.brand = product.getBrand();
-    this.colour = product.getColour();
-    this.oldPrice = product.getPrice();
-    this.newPrice = newPrice;
-  }
 }
