@@ -1,4 +1,4 @@
-package com.example.joseph.productservice.config;
+package com.example.joseph.productservice.configurations;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
